@@ -10,11 +10,17 @@
         $(document).ready(() => {
             var setListReq = $.getJSON('https://raw.githubusercontent.com/awilli70/comp20-json/main/songs.json', (data) => {
                 let jsonString = (JSON.stringify(data));
+                // Master Setlist
                 let setList = data.SetList
                 $("h1").html(setList.CoverBandName);
                 $("h2").html(setList.SetListTitle);
+
+                // This is gross, so comments will do some leg work
+                // Probably should have made the success continuation a function
+                // and not a lambda
                 let songsHTML = ""
                 var genres = [];
+                //Make html to display songs
                 for (let song of setList.Songs) {
                     genres = genres.concat(song.Genre)
                     let genreString = song.Genre.join(', ')
@@ -26,12 +32,16 @@
                                     <div class="Year">Released ${song.Year}</div>
                                   </div>`
                 }
+                // Create a master list of generes
                 genres = genres.filter((item, i) => (genres.indexOf(item) === i))
                 genres.forEach((g) => {
                     $("#Genre").append($('<option>', {value: g}).text(g));
                 })
+                // Initial Display
                 $(".songs").html(songsHTML)
                 $("#strDisplay").html(jsonString);
+
+                // Change Display based on genre dropdown
                 $("#Genre").change(() => {
                     let genre = $("#Genre").val()
                     songsHTML = ""
@@ -65,7 +75,7 @@
                     }
                 })
             });
-        })
+        });
     </script>
     <title>The Cover Up</title>
 </head>
