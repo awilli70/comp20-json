@@ -1,0 +1,68 @@
+{
+    "SetList": {
+       "CoverBandName": "The Cover-Up",
+       "SetListTitle": "2000's Revival Setlist",
+       "Songs": [
+          {
+             "Artist": ["Daft Punk"],
+             "Title": "One More Time",
+             "Genre": ["Dance"],
+             "Year": "2000"
+          },
+          {
+             "Artist": ["Weezer"],
+             "Title": "Island in the Sun",
+             "Genre": ["Alternative", "Rock"],
+             "Year": "2001"
+          },
+          {
+             "Artist": ["Maroon 5"],
+             "Title": "Sunday Morning",
+             "Genre": ["Pop"],
+             "Year": "2002"
+          },
+          {
+             "Artist": ["R.E.M"],
+             "Title": "Losing My Religion",
+             "Genre": ["Rock"],
+             "Year": "2003"
+          },
+          {
+             "Artist": ["Franz Ferdinand"],
+             "Title": "Take Me Out",
+             "Genre": ["Pop", "Rock"],
+             "Year": "2004"
+          },
+          {
+             "Artist": ["Gorillaz"],
+             "Title": "Feel Good Inc",
+             "Genre": ["Alternative", "Hip-Hop"],
+             "Year": "2005"
+          },
+          {
+             "Artist": ["Gnarls Barkley"],
+             "Title": "Crazy",
+             "Genre": ["Alternative", "Rock"],
+             "Year": "2006"
+          },
+          {
+             "Artist": ["MGMT"],
+             "Title": "Time to Pretend",
+             "Genre": ["Alternative", "Pop"],
+             "Year": "2007"
+          },
+          {
+             "Artist": ["Cage the Elephant"],
+             "Title": "Ain't No Rest for the Wicked",
+             "Genre": ["Alternative", "Rock"],
+             "Year": "2008"
+          },
+          {
+             "Artist": ["Owl City"],
+             "Title": "Fireflies",
+             "Genre": ["Electronic", "Pop"],
+             "Year": "2009"
+          }
+       ]
+    }
+ }
