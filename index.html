@@ -5,15 +5,80 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles.css">
     <script>
-        var setList = $.get('./songs.json');
         $(document).ready(() => {
-            $(".songs").html("<p>Hi</p>")
+            var setListReq = $.getJSON('https://raw.githubusercontent.com/awilli70/comp20-json/main/songs.json', (data) => {
+                let jsonString = (JSON.stringify(data));
+                let setList = data.SetList
+                $("h1").html(setList.CoverBandName);
+                $("h2").html(setList.SetListTitle);
+                let songsHTML = ""
+                var genres = [];
+                for (let song of setList.Songs) {
+                    genres = genres.concat(song.Genre)
+                    let genreString = song.Genre.join(', ')
+                    let artistString = song.Artist.join(', ')
+                    songsHTML += `<div class="Song">
+                                    <div class="Title">${song.Title}</div>
+                                    <div class="Artist">Artist: ${artistString}</div>
+                                    <div class="Genre">Genre: ${genreString}</div>
+                                    <div class="Year">Released ${song.Year}</div>
+                                  </div>`
+                }
+                genres = genres.filter((item, i) => (genres.indexOf(item) === i))
+                genres.forEach((g) => {
+                    $("#Genre").append($('<option>', {value: g}).text(g));
+                })
+                $(".songs").html(songsHTML)
+                $("#strDisplay").html(jsonString);
+                $("#Genre").change(() => {
+                    let genre = $("#Genre").val()
+                    songsHTML = ""
+                    if (genre === "All") {
+                        for (let song of setList.Songs) {
+                            let genreString = song.Genre.join(', ')
+                            let artistString = song.Artist.join(', ')
+                            songsHTML += `<div class="Song">
+                                            <div class="Title">${song.Title}</div>
+                                            <div class="Artist">Artist: ${artistString}</div>
+                                            <div class="Genre">Genre: ${genreString}</div>
+                                            <div class="Year">Released ${song.Year}</div>
+                                        </div>`
+                        }
+                        $(".songs").html(songsHTML)
+                    } else {
+                        let filteredSL = setList.Songs.filter((s) => {
+                            return (s.Genre.includes(genre))
+                        })
+                        for (let song of filteredSL) {
+                            let genreString = song.Genre.join(', ')
+                            let artistString = song.Artist.join(', ')
+                            songsHTML += `<div class="Song">
+                                            <div class="Title">${song.Title}</div>
+                                            <div class="Artist">Artist: ${artistString}</div>
+                                            <div class="Genre">Genre: ${genreString}</div>
+                                            <div class="Year">Released ${song.Year}</div>
+                                        </div>`
+                        }
+                        $(".songs").html(songsHTML)
+                    }
+                })
+            });
         })
     </script>
     <title>The Cover Up</title>
 </head>
 <body>
+    <h1></h1>
+    <h2></h2>
+    <p id='strDisplay'></p>
+    <form>
+        <label for="Genre">Genre: </label>
+        <select name="Genre" id="Genre">
+            <option value="All">All</option>
+        </select>
+    </form>
     <div class="songs">
 
     </div>
